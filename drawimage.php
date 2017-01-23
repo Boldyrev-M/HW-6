@@ -10,7 +10,7 @@ $certText = file_get_contents(__DIR__."/cert.txt");
 $p_img = imagecreatetruecolor(400,300);
 $backColor = imagecolorallocate($p_img, 130,230,230);
 $fontColor = imagecolorallocate($p_img, 10,20,0);
-$fontPath = __DIR__. '/files/arial.ttf';
+$fontPath = __DIR__. '/fonts/arial.ttf';
 imagefill($p_img, 0, 0, $backColor);
 $text = explode(';',$certText);
 //var_dump($text);

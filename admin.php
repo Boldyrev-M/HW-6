@@ -19,33 +19,49 @@ http://netology-university.bitbucket.org/php/homework/2.2-forms/
 
   */
 
+/*
+ * 1 - форма логина с проверкой имени и пароля (хэш?)
+ * 2 - если логин правильный - форма добавления файла
+ *
+ *
+ *
+ *     if($USER->isAdmin())
+    {
+        echo ‘<pre>’;
+        print_r($array);
+        echo ‘</pre>';
+    }
+*/
 require "functions.php";
-if (empty($_POST))
-{
-    $_POST['login'] = '';
-    $_POST['pass'] = '';
-}
 
-if (isAdmin($_POST['login'],$_POST['pass']) || isset($_POST['trueAdmin'])) {
+if (!empty($_POST) && (isset($_POST['trueAdmin']) || isAdmin($_POST['login'],$_POST['pass']) )) {
     // открыть форму загрузки
-    $string = '<form action=" " method="post" enctype="multipart/form-data">
+    $string = <<<INP_Form
+    <form action=" " method="post" enctype="multipart/form-data">
         <label for="FileName">Выберите файл для загрузки:</label>
         <input id="FileName" type="file" name="FileName">
         <input type="submit" value="Загрузить файл">
         <input type="hidden" name="trueAdmin" value=1>
-        <input type="hidden" name="login" value="'.$_POST['login'].'">
-        <input type="hidden" name="pass" value="'.$_POST['pass'].'">
-    </form>';
+    </form>
+INP_Form;
 
     echo $string;
+    echo '<b>Правильный формат файла:</b><br /> 
+[{<br />
+  "Title": "Название теста"<br />
+},<br />
+  {<br />
+    "num": "1", // порядковый номер вопроса<br />
+    "Question": "2+2=", // Текст вопроса<br />
+    "Answer": "4" // Правильный ответ<br />
+  },<br /> { <br />... // следующий вопрос<br /> },<br />...<br />,{<br />...     // последний вопрос<br />}]
+  <br /><br>';
 
     if (!empty($_FILES)) {
         $num = uploadTestFile($_FILES['FileName']);
-        if ($num == 0 ) {
-            echo "NUM:". $num;
-            die('Файл НЕ загружен!');
-        }
-        else {
+        if ($num !== false) {
+            //echo "NUM:". $num;
+            //echo '"' . $_FILES['FileName']['name']. '" загружен успешно под номером ' . $num . '.<br>';
             echo '<form action="list.php" method="post">
                   <input type="submit" value="Показать список">
                   </form>';
@@ -53,8 +69,9 @@ if (isAdmin($_POST['login'],$_POST['pass']) || isset($_POST['trueAdmin'])) {
     }
 
 }
-else
-{
+else {
+// предложить запустить тест
+    //echo 'NOT admin';
     $string = <<<INP_Form
 <form action=" " method="post">
     <label for="login">Логин:</label>
@@ -68,4 +85,10 @@ INP_Form;
 
     echo $string;
 }
+//if (!empty($_POST)) {
+//    $destination = __DIR__ . '/files/' . $_FILES['name'];
+//    if(!move_uploaded_file($HTTP_POST_FILES), $destination) {
+//        die ("Файл не загружен!");
+//    }
+//}
 

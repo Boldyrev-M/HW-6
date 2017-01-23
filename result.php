@@ -34,7 +34,7 @@ foreach ($questions_json_array as $item) {
 $mark = (1 + round($correct/$vsego*4));
 echo "Вопросов: ". $vsego ."<br>";
 echo "Правильных ответов: ". $correct."<br>";
-echo "Оценка: ". $mark."<br>";
+echo "Оценка: ".$mark."<br>";
 
 $text = "Студент: " . $_POST["userName"].
                 ";Тест: " . $TitleTest["Title"].

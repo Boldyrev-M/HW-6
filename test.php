@@ -5,7 +5,7 @@
  * Date: 05.01.2017
  * Time: 18:50
  */
-
+//var_dump($_GET);
 $testName = $_GET["testRun"];
 if (!file_exists(__DIR__ . '/files/'.$testName)) {
     header("HTTP/1.0 404 Not Found");
@@ -14,8 +14,11 @@ if (!file_exists(__DIR__ . '/files/'.$testName)) {
 $fileContent = file_get_contents(__DIR__ . '/files/'.$testName);
 
 $questions_json_array = json_decode($fileContent, true);
-$TitleTest =  array_shift($questions_json_array);
+//echo "<pre>".print_r($questions_json_array,true)."</pre>";
 
+if (array_key_exists('Title',$questions_json_array[0])) {
+    $TitleTest =  array_shift($questions_json_array);
+}
 
     $StartTestForm = '<form action="result.php" method= "post">
            <fieldset><legend>' . $TitleTest["Title"] . '</legend>
