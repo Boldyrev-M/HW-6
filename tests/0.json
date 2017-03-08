@@ -1,0 +1,33 @@
+[{
+  "Title":"Вопросы по математике"
+},
+  {
+    "num": "1",
+    "Question": "sin(0)=?",
+    "Answer": "1"
+  },
+  {
+    "num": "2",
+    "Question": "5!=?",
+    "Answer": "120"
+  },
+ {
+  "num": "3",
+  "Question": "i*i=",
+  "Answer": "-1"
+},
+  {
+  "num": "4",
+  "Question": "2+2*2=",
+  "Answer": "6"
+},
+  {
+  "num": "5",
+  "Question": "Cколько углов у куба?",
+  "Answer": "8"
+},
+  {
+    "num": "6",
+    "Question": "Ln(e)=",
+    "Answer": "1"
+  }]

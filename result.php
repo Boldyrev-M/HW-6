@@ -13,10 +13,10 @@
  * ["responce"]=> array(2) { [1]=> string(3) "qww" [2]=> string(4) "wewe" }
  * }
 */
-require "functions.php";
+require_once "functions.php";
 
 $correct = 0;
-$fileContent = file_get_contents(__DIR__ . '/files/'.$_POST["test"]);
+$fileContent = file_get_contents(__DIR__ .DIRECTORY_SEPARATOR.'tests'.DIRECTORY_SEPARATOR.$_POST["test"]);
 $questions_json_array = json_decode($fileContent, true);
 $TitleTest =  array_shift($questions_json_array);
 echo "Пользователь: " . $_POST["userName"] . "<br>";
